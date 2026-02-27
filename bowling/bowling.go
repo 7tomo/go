@@ -1,9 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"bowling/domain"
+	"fmt"
+)
+
+const RowsAmount int = 4
 
 func main() {
-	fmt.Println("Добро пожаловать в боулинг!")
-	fmt.Println("Текущий счёт: 0")
+	manager := domain.NewManager()
+	for range RowsAmount {
+		manager.NewRow(domain.NewRow())
+	}
+	score := domain.NewConsoleScore(manager)
+	console := domain.NewConsole(manager, score)
+	console.Dialog()
+	fmt.Printf("День завершён")
 }
- 
